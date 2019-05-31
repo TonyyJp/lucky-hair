@@ -97,6 +97,7 @@ class MembersController extends Controller
         $grid->amount('余额');
         $grid->created_at('创建时间');
         $grid->updated_at('更新时间');
+        $grid->model()->orderby('created_at','desc');
         $grid->actions(function ($actions) {
             $actions->disableView();
         });
@@ -158,13 +159,14 @@ class MembersController extends Controller
         $form->text('name', '昵称')->placeholder('请输入用户昵称')->rules('required');
         $form->radio('gender', '性别')->options(['1' => '男', '0'=> '女'])->default('1')->rules('required');
         $form->mobile('phone', '电话')->placeholder('请输入电话')->rules('required');
-        $form->select('level_id', '等级')->options('/api/level')->default("1");
+        $form->select('level_id', '等级')->options('/api/level')->default("0");
         $status = [
             'on'  => ['value' => 'start', 'text' => '正常', 'color' => 'success'],
             'off' => ['value' => 'close', 'text' => '冻结', 'color' => 'danger'],
         ];
         $form->switch('status', '状态')->states($status)->default('start');
         $form->currency('amount', '余额')->symbol('￥');
+        $form->textarea('note', '备注')->rows(7)->placeholder('备注');
 
         $form->tools(function (Form\Tools $tools) {
             $tools->disableView();

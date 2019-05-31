@@ -4,12 +4,12 @@ namespace App\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\HasResourceActions;
-use Encore\Admin\Layout\Content;
 use Illuminate\Http\Request;
 use Encore\Admin\Facades\Admin;
+use Encore\Admin\Layout\Content;
 use Illuminate\Support\Facades\DB;
 
-class ConsumeController extends Controller
+class SingleconsumeController extends Controller
 {
     use HasResourceActions;
 
@@ -27,11 +27,12 @@ class ConsumeController extends Controller
                 ->leftJoin('level', 'members.level_id', '=', 'level.id')
                 ->select('members.*', 'level.title')
                 ->where('phone', $key)->first();
-            $articleView = view('admin.consume',['result' => $result, 'key'=> $key])
+            $articleView = view('admin.singleconsume',['result' => $result, 'key'=> $key])
                 ->render();
             $content->row($articleView);
 
-        })->header('会员消费');
+        })->header('散客消费');
     }
+
 
 }

@@ -80,9 +80,15 @@ class LevelController extends Controller
         $grid->id('编号');
         $grid->title('标题');
         $grid->discount('折扣');
-        $grid->status('状态');
+        $grid->status('状态')->display(function($status) {
+            return $status=="start" ? "正常" : "冻结";
+        });
         $grid->created_at('创建时间');
         $grid->updated_at('更新时间');
+        $grid->model()->orderby('created_at','desc');
+        $grid->actions(function ($actions) {
+            $actions->disableView();
+        });
 
         return $grid;
     }

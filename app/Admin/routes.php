@@ -17,7 +17,9 @@ Route::group([
 
     $router->get ('recharge', 'RechargeController@index');
     $router->get ('consume', 'ConsumeController@index');
+    $router->get ('singleconsume', 'singleconsumeController@index');
 
     $router->post ('api/recharge', 'CommonController@putRecharge');
     $router->post ('api/consume', 'CommonController@putConsume');
+    $router->post ('api/signleconsume', 'CommonController@putSignleconsume');
 });

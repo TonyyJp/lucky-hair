@@ -32,7 +32,8 @@ class CommonController extends Controller
                 'content' => '用户 '.$info->name.' 充值金额 ¥'.$amount,
                 'type' => 'recharge',
                 'created_at' => date ('Y-m-d h:i:s', time()),
-                'updated_at' => date ('Y-m-d h:i:s', time())
+                'updated_at' => date ('Y-m-d h:i:s', time()),
+                'amount' => $amount
             ];
             return json_encode (Log::insert($log));
         }else{
@@ -42,7 +43,7 @@ class CommonController extends Controller
     }
 
     /**
-     * 消费
+     * 会员消费
      * @param Request $request
      * @return false|int|string
      */
@@ -50,6 +51,7 @@ class CommonController extends Controller
     {
         $phone = $request->input ('phone');
         $amount = $request->input ('amount');
+        $product = $request->input ('product');
         $info = Members::where('phone', trim ($phone))->first();
 
         if($info) {
@@ -61,10 +63,11 @@ class CommonController extends Controller
                 $log = [
                     'admin_name' => Admin::user()->username,
                     'member_name' => $info->name,
-                    'content' => '用户 '.$info->name.' 消费金额 ¥'.$amount,
+                    'content' => '用户 '.$info->name.' 消费金额 ¥'.$amount. ' 产品：'.$product,
                     'type' => 'consume',
                     'created_at' => date ('Y-m-d h:i:s', time()),
-                    'updated_at' => date ('Y-m-d h:i:s', time())
+                    'updated_at' => date ('Y-m-d h:i:s', time()),
+                    'amount' => $amount
                 ];
                 return json_encode (Log::insert($log));
 
@@ -75,5 +78,26 @@ class CommonController extends Controller
             return 0;
         }
 
+    }
+
+    /**
+     * 散客消费
+     * @param Request $request
+     * @return false|string
+     */
+    public function putSignleconsume(Request $request)
+    {
+        $amount = $request->input ('amount');
+
+        $log = [
+            'admin_name' => Admin::user ()->username,
+            'member_name' => 0,
+            'content' => '散客消费金额 ¥'.$amount,
+            'type' => 'consume',
+            'created_at' => date ('Y-m-d h:i:s', time ()),
+            'updated_at' => date ('Y-m-d h:i:s', time ()),
+            'amount' => $amount
+        ];
+        return json_encode (Log::insert($log));
     }
 }

@@ -15,7 +15,12 @@ class CommonController extends Controller
      */
     public function getLevel()
     {
-        return Level::select('id', 'title as text')->where('status', 'start')->get();
+        $result = Level::select('id', 'title as text')->where('status', 'start')->get()->toArray();
+        $result[] = [
+            'id' => 0,
+            'text' => '普通会员'
+        ];
+        return $result;
     }
 
 

@@ -79,6 +79,7 @@ class LogController extends Controller
         $grid->admin_name('操作人');
         $grid->member_name('会员');
         $grid->content('内容');
+        $grid->amount('金额');
         $grid->type('操作类型')->display(function($type) {
             switch ($type) {
                 case "recharge":
@@ -93,6 +94,7 @@ class LogController extends Controller
             }
         });
         $grid->created_at('创建时间');
+        $grid->model()->orderby('created_at','desc');
         $grid->disableCreateButton();
         $grid->disableRowSelector();
         $grid->disableActions();

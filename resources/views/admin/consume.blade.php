@@ -47,8 +47,9 @@
                 <div class="input-group">
                     <input type="hidden" id="phone" value="@isset($result->phone) {{ $result->phone }} @endisset">
                     <div class="input-group-addon">￥</div>
-                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="金额">
-                    <div class="input-group-addon">.00</div>
+                    {{--<input type="text" class="form-control" id="exampleInputAmount" placeholder="金额">--}}
+                    <input style="width: 120px; text-align: right;" type="text" id="exampleInputAmount" value="0.00" class="form-control amount" placeholder="金额">
+                    {{--<div class="input-group-addon">.00</div>--}}
                 </div>
             </div>
             <select id="product" class="form-control">

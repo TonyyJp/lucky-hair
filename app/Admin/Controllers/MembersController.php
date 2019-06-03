@@ -165,8 +165,7 @@ class MembersController extends Controller
             'off' => ['value' => 'close', 'text' => '冻结', 'color' => 'danger'],
         ];
         $form->switch('status', '状态')->states($status)->default('start');
-//        $form->currency('amount', '余额')->symbol('￥');
-        $form->hidden('amount', '余额')->default ("0.00");
+        $form->currency('amount', '余额')->symbol('￥');
         $form->textarea('note', '备注')->rows(7)->placeholder('备注');
 
         $form->tools(function (Form\Tools $tools) {

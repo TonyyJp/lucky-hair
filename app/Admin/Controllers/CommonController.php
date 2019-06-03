@@ -31,8 +31,8 @@ class CommonController extends Controller
                 'member_name' => $info->name,
                 'content' => '用户 '.$info->name.' 充值金额 ¥'.$amount,
                 'type' => 'recharge',
-                'created_at' => date ('Y-m-d h:i:s', time()),
-                'updated_at' => date ('Y-m-d h:i:s', time()),
+                'created_at' => date ('Y-m-d H:i:s', time()),
+                'updated_at' => date ('Y-m-d H:i:s', time()),
                 'amount' => $amount
             ];
             return json_encode (Log::insert($log));
@@ -65,8 +65,8 @@ class CommonController extends Controller
                     'member_name' => $info->name,
                     'content' => '用户 '.$info->name.' 消费金额 ¥'.$amount. ' 产品：'.$product,
                     'type' => 'consume',
-                    'created_at' => date ('Y-m-d h:i:s', time()),
-                    'updated_at' => date ('Y-m-d h:i:s', time()),
+                    'created_at' => date ('Y-m-d H:i:s', time()),
+                    'updated_at' => date ('Y-m-d H:i:s', time()),
                     'amount' => $amount
                 ];
                 return json_encode (Log::insert($log));
@@ -95,8 +95,8 @@ class CommonController extends Controller
             'member_name' => 0,
             'content' => '散客消费金额 ¥'.$amount. ' 产品：'.$product,
             'type' => 'consume',
-            'created_at' => date ('Y-m-d h:i:s', time ()),
-            'updated_at' => date ('Y-m-d h:i:s', time ()),
+            'created_at' => date ('Y-m-d H:i:s', time ()),
+            'updated_at' => date ('Y-m-d H:i:s', time ()),
             'amount' => $amount
         ];
         return json_encode (Log::insert($log));

@@ -26,6 +26,7 @@ class HomeController extends Controller
             $data['td_news'] = Members::where('status', 'start')->whereBetween('created_at', [$data['today_start'], $data['today_end']])->count();
             // 储值卡充值
             $data['td_card_recharge'] = Log::where('type', 'recharge')->where('member_name', '!=', '0')->whereBetween('created_at', [$data['today_start'], $data['today_end']])->sum('amount');
+//            dd ($data['td_card_recharge']);
 
             // month time
             $data['month_start'] = date('Y-m-d 00:00:00', mktime(0, 0, 0, date('m'), 1, date('Y')));

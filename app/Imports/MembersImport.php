@@ -15,12 +15,23 @@ class MembersImport implements ToModel, WithBatchInserts
     */
     public function model(array $row)
     {
+        if (!empty($row[3])) {
+            if ($row[3] == "女"){
+                $gender = "0";
+            }else{
+                $gender = "1";
+            }
+        }else{
+            $gender = "1";
+        }
+
         return new Members([
             //
-            'name' => !empty($row[0]) ? $row[0] : "测试",
+
+            'name' => !empty($row[0]) ? trim ($row[0]) : "测试",
             'phone' => !empty($row[1]) ? intval ($row[1]) : "11111111111",
-            'amount' => $row[2],
-            'gender' => 1,
+            'amount' => !empty($row[2]) ? trim ($row[2]) : "0.00",
+            'gender' => $gender,
             'level_id' => 0,
             'status' => "start",
             'created_at' => date ('Y-m-d H:i:s', time ()),

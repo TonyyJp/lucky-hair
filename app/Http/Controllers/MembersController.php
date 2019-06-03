@@ -19,7 +19,7 @@ class MembersController extends Controller
 //        dd ($array);
 
 
-        Excel::import(new MembersImport, "624.xlsx");
+        Excel::import(new MembersImport, "350.xlsx");
         return redirect('/')->with('success', 'All good!');
 
     }

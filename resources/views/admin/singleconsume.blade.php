@@ -14,6 +14,14 @@
                     <div class="input-group-addon">.00</div>
                 </div>
             </div>
+            <select id="product" class="form-control">
+                <option value="洗吹">洗吹</option>
+                <option value="洗剪吹">洗剪吹</option>
+                <option value="染发">染发</option>
+                <option value="烫发">烫发</option>
+                <option value="护理">护理</option>
+                <option value="产品">产品</option>
+            </select>
             <button type="button" class="btn btn-primary btn_recharge">消费</button>
         </form>
     </div>
@@ -26,7 +34,8 @@
 
     $('.btn_recharge').click(function () {
         var amount = $("#exampleInputAmount").val();
-        $.post("/admin/api/signleconsume", {"amount": amount}, function (data) {
+        var product = $("#product").val();
+        $.post("/admin/api/signleconsume", {"amount": amount, "product":product}, function (data) {
             window.location.reload()
         });
     })

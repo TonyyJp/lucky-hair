@@ -88,11 +88,12 @@ class CommonController extends Controller
     public function putSignleconsume(Request $request)
     {
         $amount = $request->input ('amount');
+        $product = $request->input ('product');
 
         $log = [
             'admin_name' => Admin::user ()->username,
             'member_name' => 0,
-            'content' => '散客消费金额 ¥'.$amount,
+            'content' => '散客消费金额 ¥'.$amount. ' 产品：'.$product,
             'type' => 'consume',
             'created_at' => date ('Y-m-d h:i:s', time ()),
             'updated_at' => date ('Y-m-d h:i:s', time ()),

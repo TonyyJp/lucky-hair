@@ -20,6 +20,7 @@ class CommonController extends Controller
      */
     public function putRecharge(Request $request)
     {
+        header("Content-type:text/html; charset=UTF-8");
         $phone = $request->input ('phone');
         $amount = $request->input ('amount');
         $info = Members::where('phone', trim ($phone))->first();
@@ -35,6 +36,9 @@ class CommonController extends Controller
                 'updated_at' => date ('Y-m-d H:i:s', time()),
                 'amount' => $amount
             ];
+            $post_data = "account=".env ('SMS_APPID')."&password=".env ('SMS_KEY')."&mobile=".$phone."&content=".rawurlencode("尊敬的".$phone."，您这次在本店充值了¥".$amount."，成为本店VIP，可在美容美发中消费～往后日子，有你有我哦");
+            xml_to_array(Post($post_data, env ('SMS_URL')));
+
             return json_encode (Log::insert($log));
         }else{
             return 0;
@@ -49,6 +53,7 @@ class CommonController extends Controller
      */
     public function putConsume(Request $request)
     {
+        header("Content-type:text/html; charset=UTF-8");
         $phone = $request->input ('phone');
         $amount = $request->input ('amount');
         $product = $request->input ('product');
@@ -69,6 +74,9 @@ class CommonController extends Controller
                     'updated_at' => date ('Y-m-d H:i:s', time()),
                     'amount' => $amount
                 ];
+                $post_data = "account=".env ('SMS_APPID')."&password=".env ('SMS_KEY')."&mobile=".$phone."&content=".rawurlencode("尊敬的会员 ".$phone."，您这次在本店消费了".$amount."，余额剩".$balance."，十分感谢您的支持");
+                xml_to_array(Post($post_data, env ('SMS_URL')));
+
                 return json_encode (Log::insert($log));
 
             }else{

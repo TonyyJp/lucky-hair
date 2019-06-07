@@ -22,6 +22,10 @@
                 <option value="烫发">烫发</option>
                 <option value="护理">护理</option>
                 <option value="产品">产品</option>
+                <option value="单剪">单剪</option>
+                <option value="美容项目">美容项目</option>
+                <option value="泰式">泰式</option>
+                <option value="其他">其他</option>
             </select>
             <button type="button" class="btn btn-primary btn_recharge">消费</button>
         </form>

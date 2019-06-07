@@ -37,6 +37,7 @@ class Dashboard
             ['name' => 'URL',               'value' => config('app.url')],
         ];
 
+
         return view('admin::dashboard.environment', compact('envs'));
     }
 

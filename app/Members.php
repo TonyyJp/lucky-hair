@@ -1,4 +1,9 @@
 <?php
+/**
+ * MembersModel
+ * @author chapin <chapinwan@yahoo.com>
+ * @date 2019-06-10
+ */
 
 namespace App;
 

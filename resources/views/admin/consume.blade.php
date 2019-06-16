@@ -25,6 +25,10 @@
             <dd>@isset($result->gender) {{ $result->gender == 1 ? "男" : "女" }} @endisset</dd>
         </dl>
         <dl class="dl-horizontal">
+            <dt>等级:</dt>
+            <dd>@isset($result->title) {{ $result->title ? $result->title : "普通会员" }} @endisset</dd>
+        </dl>
+        <dl class="dl-horizontal">
             <dt>电话:</dt>
             <dd>@isset($result->phone) {{ $result->phone }} @endisset</dd>
         </dl>
